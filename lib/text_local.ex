@@ -14,7 +14,7 @@ defmodule TextLocal do
     |> URI.encode_query
 
     ("send?" <> payload)
-    |> Api.get!
+    |> Api.get!([], [recv_timeout: get_config(:recv_timeout_ms) || 30000])
     |> Map.get(:body)
   end
 
